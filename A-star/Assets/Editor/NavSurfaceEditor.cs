@@ -9,6 +9,8 @@ public class NavSurfaceEditor : Editor {
 
 		NavSurface nav_surface = (NavSurface) target;
 
+		GUILayout.BeginHorizontal();
+
 		if (GUILayout.Button("Bake Navigation Nodes")) {
 			nav_surface.BakeNodes();
 		}
@@ -16,6 +18,8 @@ public class NavSurfaceEditor : Editor {
 		if (GUILayout.Button("Clear Navigation Nodes")) {
 			nav_surface.ClearNodes();
 		}
+
+		GUILayout.EndHorizontal();
 
 	}
 

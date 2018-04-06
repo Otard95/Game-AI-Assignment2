@@ -1,12 +1,14 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class NavSurface : MonoBehaviour {
 
+	/**
+	 * # Unity Proporties
+	*/
 	[SerializeField] int resolution = 2;
-	[SerializeField] float obstaclePadding = 1.2f;
+	[SerializeField] float obstaclePadding = .3f;
 	[SerializeField] LayerMask obstacleLayer;
 	[Tooltip("Continuasly update nodes at runtime")]
 	[SerializeField]
@@ -15,73 +17,97 @@ public class NavSurface : MonoBehaviour {
 	[SerializeField]
 	float updateInterval = 0.01f;
 
-	[SerializeField][HideInInspector] bool[] nodes;
+	/**
+	 * # Persistent fields
+	*/
+	[SerializeField][HideInInspector] bool[] _nodes;
+	[SerializeField][HideInInspector] PathNode[] _path_nodes;
 
-	[SerializeField][HideInInspector] int width;
-	[SerializeField][HideInInspector] int height;
+	[SerializeField][HideInInspector] int _width;
+	[SerializeField][HideInInspector] int _height;
+	[SerializeField][HideInInspector] float _ratio_x;
+	[SerializeField][HideInInspector] float _ratio_y;
 
+	/**
+	 * # Private Fields
+	*/
 	float _last_update;
 
+	/**
+	 * # Unity Methods
+	*/
 	[UsedImplicitly]
 	void Start () {
-		if (nodes == null || nodes.Length == 0) BakeNodes();
+		if (_nodes == null || _nodes.Length == 0) BakeNodes();
 		_last_update = updateInterval;
 	}
 
 	[UsedImplicitly]
 	void Update () {
-		if (nodes == null || nodes.Length == 0 || (_last_update <= 0 && dynamicNodes)) {
+		if (_nodes == null || _nodes.Length == 0 || (_last_update <= 0 && dynamicNodes)) {
 			_last_update = updateInterval;
 			BakeNodes();
 		}
 		if (dynamicNodes) _last_update -= Time.deltaTime;
 	}
 
+	[UsedImplicitly]
+	void OnDrawGizmosSelected () {
+		if (_nodes == null) return;
+
+		for (int j = 0; j < _height; j++) {
+			for (int i = 0; i < _width; i++) {
+				Vector3 pos = NodeWorldPos(i, j);
+
+				Gizmos.color = _nodes[i + j * _width] ? Color.green : Color.red;
+				Gizmos.DrawWireSphere(pos, obstaclePadding);
+			}
+		}
+	}
+
+	/**
+	 * # Private Methods
+	*/
+
 	public void BakeNodes () {
 		var c = GetComponent<Collider>();
 
-		width = Mathf.FloorToInt(c.bounds.size.x * resolution) + 1;
-		height = Mathf.FloorToInt(c.bounds.size.z * resolution) + 1;
+		_width = Mathf.FloorToInt(c.bounds.size.x * resolution);
+		_height = Mathf.FloorToInt(c.bounds.size.z * resolution);
 
-		nodes = new bool[width * height];
+		_ratio_x = c.bounds.size.x / _width;
+		_ratio_y = c.bounds.size.z / _height;
 
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
+		_nodes = new bool[_width * _height];
+		if (!dynamicNodes)
+			_path_nodes = new PathNode[_width * _height];
 
-				Vector3 pos = NodePos(i, j);
+			for (int j = 0; j < _height; j++) {
+			for (int i = 0; i < _width; i++) {
+
+				Vector3 pos = NodeWorldPos(i, j);
 
 				if (Physics.OverlapSphere(pos, obstaclePadding, obstacleLayer).Length > 0) {
-					nodes[i + j * height] = false;
+					_nodes[i + j * _width] = false;
 				} else {
-					nodes[i + j * height] = true;
+					_nodes[i + j * _width] = true;
 				}
+
+				if (!dynamicNodes)
+					_path_nodes[i + j * _width] = new PathNode(new Vector2(i,j), _nodes[i+j*_width], pos);
 
 			}
 		}
 	}
 
 	public void ClearNodes () {
-		height = 0;
-		width = 0;
-		nodes = null;
+		_height = 0;
+		_width = 0;
+		_nodes = null;
 	}
 
-	[UsedImplicitly]
-	void OnDrawGizmosSelected () {
-		if (nodes == null) return;
-
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				Vector3 pos = NodePos(i, j);
-
-				Gizmos.color = nodes[i + j * height] ? Color.green : Color.red;
-				Gizmos.DrawWireSphere(pos, obstaclePadding);
-			}
-		}
-	}
-
-	Vector3 NodePos (int x, int y) {
-		return transform.position + transform.right * ((x - (width - 1) / 2f) / resolution) + transform.forward * ((y - (height - 1) / 2f) / resolution);
+	Vector3 NodeWorldPos (int x, int y) {
+		return transform.position + transform.right * ((x - _width * .5f) * _ratio_x + (_ratio_x * .5f)) + transform.forward * ((y - _height * .5f) * _ratio_y + (_ratio_y * .5f));
 	}
 
 }
