@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 				target = hit.transform.GetComponent<NavSurface>();
 				if (!target) return;
 
-				targetNode = target.ClosestNode(hit.point);
+				targetNode = target.ClosestNodeToPoint(hit.point);
 			}
 
 		}

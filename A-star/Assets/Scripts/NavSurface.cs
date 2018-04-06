@@ -77,13 +77,16 @@ public class NavSurface : MonoBehaviour
 	 * # Private Methods
 	*/
 
-	public void BakeNodes () {
+	public void BakeNodes ()
+	{
 
-		_width = Mathf.FloorToInt(col.bounds.size.x * resolution);
-		_height = Mathf.FloorToInt(col.bounds.size.z * resolution);
+		Vector3 bounds = GetLoaclBoundingBox(col);
 
-		_ratio_x = col.bounds.size.x / _width;
-		_ratio_y = col.bounds.size.z / _height;
+		_width = Mathf.FloorToInt(bounds.x * resolution);
+		_height = Mathf.FloorToInt(bounds.z * resolution);
+
+		_ratio_x = bounds.x / _width;
+		_ratio_y = bounds.z / _height;
 
 		_nodes = new bool[_width * _height];
 		if (!dynamicNodes)
@@ -113,17 +116,49 @@ public class NavSurface : MonoBehaviour
 		_nodes = null;
 	}
 
+	Vector3 NodeWorldPos (int x, int y) {
+		return transform.position + transform.right * ((x - _width * .5f) * _ratio_x + (_ratio_x * .5f)) + transform.forward * ((y - _height * .5f) * _ratio_y + (_ratio_y * .5f));
+	}
+
+	Vector3 GetLoaclBoundingBox (Collider collider) {
+		if (col is BoxCollider)
+			return ((BoxCollider) col).size;
+
+		if (col is SphereCollider) {
+			var radius = ((SphereCollider)col).radius;
+			return new Vector3(radius * 2, radius * 2, radius * 2);
+		}
+
+		if (col is CapsuleCollider) {
+			var radius = ((CapsuleCollider)col).radius;
+			var height = ((CapsuleCollider)col).height;
+			var direction = ((CapsuleCollider)col).direction;
+
+			var directionArray = new Vector3[] { Vector3.right, Vector3.up, Vector3.forward };
+			var result = new Vector3();
+			for (int i = 0; i < 3; i++) {
+				if (i == direction)
+					result += directionArray[i] * height;
+				else
+					result += directionArray[i] * radius * 2;
+			}
+			return result;
+		}
+
+		if (col is MeshCollider) {
+			return ((MeshCollider) col).sharedMesh.bounds.size;
+		}
+
+		return Vector3.zero;
+	}
+
 	public void HightlightNode(Vector2 pos)
 	{
 		Gizmos.color = Color.magenta;
 		Gizmos.DrawWireSphere(NodeWorldPos((int)pos.x, (int)pos.y), obstaclePadding*1.01f);
 	}
 
-	Vector3 NodeWorldPos (int x, int y) {
-		return transform.position + transform.right * ((x - _width * .5f) * _ratio_x + (_ratio_x * .5f)) + transform.forward * ((y - _height * .5f) * _ratio_y + (_ratio_y * .5f));
-	}
-
-	public Vector2 ClosestNode (Vector3 pos)
+	public Vector2 ClosestNodeToPoint (Vector3 pos)
 	{
 		// transform 'pos' to be relative to the plane.
 		pos -= transform.position;

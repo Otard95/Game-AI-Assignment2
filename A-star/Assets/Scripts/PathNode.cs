@@ -20,23 +20,20 @@ public struct PathNode
 		fCost = _fCost;
 	}
 
-	Vector2 _grid_pos;
-	bool _walkable;
-	Vector3 _world_pos;
+	readonly Vector2 _grid_pos;
+	readonly bool _walkable;
+	readonly Vector3 _world_pos;
 	public Vector2 GridPos
 	{
 		get { return _grid_pos; }
-		private set { _grid_pos = value; }
 	}
 	public bool Walkable
 	{
 		get { return _walkable; }
-		private set { _walkable = value; }
 	}
 	public Vector3 WorldPos
 	{
 		get { return _world_pos; }
-		private set { _world_pos = value; }
 	}
 
 	public Vector2 parent;
