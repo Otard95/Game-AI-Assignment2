@@ -2,7 +2,8 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class NavSurface : MonoBehaviour {
+public class NavSurface : MonoBehaviour
+{
 
 	/**
 	 * # Unity Proporties
@@ -10,23 +11,29 @@ public class NavSurface : MonoBehaviour {
 	[SerializeField] int resolution = 2;
 	[SerializeField] float obstaclePadding = .3f;
 	[SerializeField] LayerMask obstacleLayer;
-	[Tooltip("Continuasly update nodes at runtime")]
-	[SerializeField]
+
+	[Tooltip("Continuasly update nodes at runtime")] [SerializeField]
 	bool dynamicNodes = false;
-	[Tooltip("In seconds")]
-	[SerializeField]
+
+	[Tooltip("In seconds")] [SerializeField]
 	float updateInterval = 0.01f;
 
 	/**
 	 * # Persistent fields
 	*/
-	[SerializeField][HideInInspector] bool[] _nodes;
-	[SerializeField][HideInInspector] PathNode[] _path_nodes;
+	[SerializeField] [HideInInspector] bool[] _nodes;
+	[SerializeField] [HideInInspector] PathNode[] _path_nodes;
 
-	[SerializeField][HideInInspector] int _width;
-	[SerializeField][HideInInspector] int _height;
-	[SerializeField][HideInInspector] float _ratio_x;
-	[SerializeField][HideInInspector] float _ratio_y;
+	[SerializeField] [HideInInspector] int _width;
+	[SerializeField] [HideInInspector] int _height;
+	[SerializeField] [HideInInspector] float _ratio_x;
+	[SerializeField] [HideInInspector] float _ratio_y;
+
+	/**
+	 * # Componets
+	*/
+
+	[SerializeField] Collider col;
 
 	/**
 	 * # Private Fields
@@ -38,6 +45,7 @@ public class NavSurface : MonoBehaviour {
 	*/
 	[UsedImplicitly]
 	void Start () {
+
 		if (_nodes == null || _nodes.Length == 0) BakeNodes();
 		_last_update = updateInterval;
 	}
@@ -70,13 +78,12 @@ public class NavSurface : MonoBehaviour {
 	*/
 
 	public void BakeNodes () {
-		var c = GetComponent<Collider>();
 
-		_width = Mathf.FloorToInt(c.bounds.size.x * resolution);
-		_height = Mathf.FloorToInt(c.bounds.size.z * resolution);
+		_width = Mathf.FloorToInt(col.bounds.size.x * resolution);
+		_height = Mathf.FloorToInt(col.bounds.size.z * resolution);
 
-		_ratio_x = c.bounds.size.x / _width;
-		_ratio_y = c.bounds.size.z / _height;
+		_ratio_x = col.bounds.size.x / _width;
+		_ratio_y = col.bounds.size.z / _height;
 
 		_nodes = new bool[_width * _height];
 		if (!dynamicNodes)
@@ -94,7 +101,7 @@ public class NavSurface : MonoBehaviour {
 				}
 
 				if (!dynamicNodes)
-					_path_nodes[i + j * _width] = new PathNode(new Vector2(i,j), _nodes[i+j*_width], pos);
+					_path_nodes[i + j * _width] = new PathNode(new Vector2(i, j), _nodes[i + j * _width], pos);
 
 			}
 		}
@@ -106,8 +113,27 @@ public class NavSurface : MonoBehaviour {
 		_nodes = null;
 	}
 
+	public void HightlightNode(Vector2 pos)
+	{
+		Gizmos.color = Color.magenta;
+		Gizmos.DrawWireSphere(NodeWorldPos((int)pos.x, (int)pos.y), obstaclePadding*1.01f);
+	}
+
 	Vector3 NodeWorldPos (int x, int y) {
 		return transform.position + transform.right * ((x - _width * .5f) * _ratio_x + (_ratio_x * .5f)) + transform.forward * ((y - _height * .5f) * _ratio_y + (_ratio_y * .5f));
+	}
+
+	public Vector2 ClosestNode (Vector3 pos)
+	{
+		// transform 'pos' to be relative to the plane.
+		pos -= transform.position;
+		pos += col.bounds.extents;
+		// Subtract in the x and y offsets
+		pos -= transform.right * _ratio_x * .5f + transform.forward * _ratio_y * .5f;
+		// translate to node coordinates
+		pos *= resolution;
+		// round and return
+		return new Vector2(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.z));
 	}
 
 }
