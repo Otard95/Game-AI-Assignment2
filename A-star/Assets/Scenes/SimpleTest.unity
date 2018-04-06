@@ -113,6 +113,46 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &619156533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 619156535}
+  - component: {fileID: 619156534}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &619156534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 619156533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e137c7df323284f8e5eb04cf7aa74c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &619156535
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 619156533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1429149953
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +182,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1429149955
 MeshRenderer:
@@ -260,7 +300,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1869699653
 GameObject:
@@ -341,7 +381,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1927007758
 GameObject:
@@ -372,7 +412,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1927007760
 MeshRenderer:
@@ -465,11 +505,1612 @@ MonoBehaviour:
   dynamicNodes: 0
   updateInterval: 0.01
   _nodes: 01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010000000101010101010101010101010101010101000000010101010101010101010101010101010100000001010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101000000010101010101010101010101010101010100000001010101010101010101010101010101010000000101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
-  _path_nodes: []
+  _path_nodes:
+  - parent: {x: 0, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 0}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 1}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 2}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 3}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 4}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 5}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 6}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 7}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 8}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 9}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 10}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 11}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 12}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 13}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 14}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 15}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 16}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 17}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 18}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 0, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 1, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 2, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 3, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 4, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 5, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 6, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 7, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 8, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 9, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 10, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 11, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 12, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 13, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 14, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 15, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 16, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 17, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 18, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
+  - parent: {x: 19, y: 19}
+    gCost: 3.4028235e+38
+    hCost: 3.4028235e+38
+    fCost: 3.4028235e+38
   _width: 20
   _height: 20
   _ratio_x: 0.5
   _ratio_y: 0.5
+  col: {fileID: 2058597332}
 --- !u!23 &2058597331
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -536,5 +2177,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
