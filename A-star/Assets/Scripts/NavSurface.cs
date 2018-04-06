@@ -82,7 +82,7 @@ public class NavSurface : MonoBehaviour {
 		if (!dynamicNodes)
 			_path_nodes = new PathNode[_width * _height];
 
-			for (int j = 0; j < _height; j++) {
+		for (int j = 0; j < _height; j++) {
 			for (int i = 0; i < _width; i++) {
 
 				Vector3 pos = NodeWorldPos(i, j);
