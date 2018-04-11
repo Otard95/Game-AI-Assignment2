@@ -31,6 +31,11 @@ public class NavSurface : MonoBehaviour {
 	[SerializeField] [HideInInspector] float _translation_y;
 
 	/**
+	 * # Proporties
+	*/
+	public PathNode[] PathNodes { get { return _path_nodes; } }
+
+	/**
 	 * # Componets
 	*/
 
@@ -82,11 +87,11 @@ public class NavSurface : MonoBehaviour {
 
 		Vector3 bounds = GetLoaclBoundingBox(col);
 
-		_width = Mathf.FloorToInt(bounds.x * transform.localScale.x * resolution);
-		_height = Mathf.FloorToInt(bounds.z * transform.localScale.z * resolution);
+		_width = Mathf.FloorToInt(bounds.x * resolution);
+		_height = Mathf.FloorToInt(bounds.z * resolution);
 
-		_translation_x = bounds.x * transform.localScale.x / _width;
-		_translation_y = bounds.z * transform.localScale.z / _height;
+		_translation_x = bounds.x / _width;
+		_translation_y = bounds.z / _height;
 
 		_nodes = new bool[_width * _height];
 		if (!dynamicNodes)
@@ -117,18 +122,24 @@ public class NavSurface : MonoBehaviour {
 	}
 
 	Vector3 NodeWorldPos (int x, int y) {
+
+		Vector3 bounds = GetLoaclBoundingBox(col) / 2;
+
 		return transform.position + // base position
-		       transform.right * ((x - _width * .5f) * _translation_x + (_translation_x * .5f)) + // Local x to world
-					 transform.forward * ((y - _height * .5f) * _translation_y + (_translation_y * .5f)); // Local y to world
+					 transform.right * (x * _translation_x + _translation_x * .5f - bounds.x) + // Local x to world
+					 transform.forward * (y * _translation_y + _translation_y * .5f - bounds.z); // Local y to world
+
 	}
 
 	Vector3 GetLoaclBoundingBox (Collider collider) {
-		if (col is BoxCollider)
-			return ((BoxCollider) col).size;
+		if (col is BoxCollider) { 
+			Vector3 size =  ((BoxCollider) col).size;
+			return new Vector3(size.x * transform.localScale.x, size.y * transform.localScale.y, size.z * transform.localScale.z);
+		}
 
 		if (col is SphereCollider) {
 			var radius = ((SphereCollider)col).radius;
-			return new Vector3(radius * 2, radius * 2, radius * 2);
+			return new Vector3(radius * 2 * transform.localScale.x, radius * 2 * transform.localScale.y, radius * 2 * transform.localScale.z);
 		}
 
 		if (col is CapsuleCollider) {
@@ -144,11 +155,14 @@ public class NavSurface : MonoBehaviour {
 				else
 					result += directionArray[i] * radius * 2;
 			}
-			return result;
+			
+			return new Vector3(result.x * transform.localScale.x, result.y * transform.localScale.y, result.z * transform.localScale.z);
 		}
 
-		if (col is MeshCollider) {
-			return ((MeshCollider) col).sharedMesh.bounds.size;
+		if (col is MeshCollider)
+		{
+			Vector3 size = ((MeshCollider) col).sharedMesh.bounds.size;
+			return new Vector3(size.x * transform.localScale.x, size.y * transform.localScale.y, size.z * transform.localScale.z);
 		}
 
 		return Vector3.zero;
@@ -166,12 +180,11 @@ public class NavSurface : MonoBehaviour {
 		// translate to surface coordinate system and account for x and y translation
 		pos = (Vector3.Dot(pos, transform.right) - _translation_x / 2) * Vector3.right + (Vector3.Dot(pos, transform.forward) - _translation_y / 2) * Vector3.forward;
 		// Account for object position being centered in its bounds
-		Vector3 bounds = GetLoaclBoundingBox(col);
-		pos += new Vector3(bounds.x * transform.localScale.x, 0, bounds.z * transform.localScale.z) / 2;
+		pos += GetLoaclBoundingBox(col) / 2;
 		// translate to node coordinates
 		pos *= resolution;
 		// round and return
-		return new Vector2(Mathf.Clamp(Mathf.RoundToInt(pos.x), 0, _width-1), Mathf.Clamp(Mathf.RoundToInt(pos.z), 0, _height-1));
+		return new Vector2(Mathf.Clamp(Mathf.RoundToInt(pos.x), 0, _width - 1), Mathf.Clamp(Mathf.RoundToInt(pos.z), 0, _height - 1));
 	}
 
 }
