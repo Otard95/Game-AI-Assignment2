@@ -2,8 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class NavSurface : MonoBehaviour
-{
+public class NavSurface : MonoBehaviour {
 
 	/**
 	 * # Unity Proporties
@@ -12,10 +11,12 @@ public class NavSurface : MonoBehaviour
 	[SerializeField] float obstaclePadding = .3f;
 	[SerializeField] LayerMask obstacleLayer;
 
-	[Tooltip("Continuasly update nodes at runtime")] [SerializeField]
+	[Tooltip("Continuasly update nodes at runtime")]
+	[SerializeField]
 	bool dynamicNodes = false;
 
-	[Tooltip("In seconds")] [SerializeField]
+	[Tooltip("In seconds")]
+	[SerializeField]
 	float updateInterval = 0.01f;
 
 	/**
@@ -77,8 +78,7 @@ public class NavSurface : MonoBehaviour
 	 * # Private Methods
 	*/
 
-	public void BakeNodes ()
-	{
+	public void BakeNodes () {
 
 		Vector3 bounds = GetLoaclBoundingBox(col);
 
@@ -152,19 +152,21 @@ public class NavSurface : MonoBehaviour
 		return Vector3.zero;
 	}
 
-	public void HightlightNode(Vector2 pos)
-	{
+	public void HightlightNode (Vector2 pos) {
 		Gizmos.color = Color.magenta;
-		Gizmos.DrawWireSphere(NodeWorldPos((int)pos.x, (int)pos.y), obstaclePadding*1.01f);
+		Gizmos.DrawWireSphere(NodeWorldPos((int) pos.x, (int) pos.y), obstaclePadding * 1.01f);
 	}
 
-	public Vector2 ClosestNodeToPoint (Vector3 pos)
-	{
-		// transform 'pos' to be relative to the plane.
-		pos -= transform.position;
-		pos += col.bounds.extents;
-		// Subtract in the x and y offsets
+	public Vector2 ClosestNodeToPoint (Vector3 pos) {
+
+		// transform 'pos' to be relative to the surface.
+		pos = pos - transform.position;
+		// Subtract the x and y offsets
 		pos -= transform.right * _ratio_x * .5f + transform.forward * _ratio_y * .5f;
+		// translate to surface coordinate system
+		pos = Vector3.Dot(pos, transform.right) * Vector3.right + Vector3.Dot(pos, transform.forward) * Vector3.forward;
+		// Account for object position being centered in its bounds
+		pos += GetLoaclBoundingBox(col) / 2;
 		// translate to node coordinates
 		pos *= resolution;
 		// round and return
