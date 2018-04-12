@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log("Path not found.");
 			return;
 		}
-
+		Debug.Log("Path Found!");
 		_motor.FollowPath(path);
 	}
 
