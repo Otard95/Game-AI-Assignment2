@@ -79,8 +79,8 @@ public class PathFinder : MonoBehaviour {
 			closedList.Add(current);
 
 			// for each neighbor of current
-			for (int i = (int) Mathf.Max(current.GridPos.x - 1, 0); i < (int) Mathf.Min(current.GridPos.x + 1, size.x - 1); i++) {
-				for (int j = (int) Mathf.Max(current.GridPos.y - 1, 0); j < (int) Mathf.Min(current.GridPos.y + 1, size.y - 1); j++) {
+			for (int i = (int) Mathf.Max(current.GridPos.x - 1, 0); i <= (int) Mathf.Min(current.GridPos.x + 1, size.x - 1); i++) {
+				for (int j = (int) Mathf.Max(current.GridPos.y - 1, 0); j <= (int) Mathf.Min(current.GridPos.y + 1, size.y - 1); j++) {
 
 					PathNode neighbor = nodes[(int)(i + j * size.x)];
 
@@ -141,25 +141,19 @@ public class PathFinder : MonoBehaviour {
 
 	}
 
-	void CalcFCost (ref List<PathNode> nodes) {
-		foreach (var node in nodes) {
-			node.fCost = node.gCost + node.hCost;
-		}
-	}
-
 	Vector3[] ReconstructPath (PathNode current) {
 
-		//		total_path:= [current]
+		// total_path:= [current]
 		List<Vector3> final_path = new List<Vector3>();
+		
+		while (current.parent != null) {
 
-		//		while current in cameFrom.Keys:
-		while (current.parent != current) {
-			//        current:= cameFrom[current]
 			final_path.Add(current.WorldPos);
-			//				total_path.append(current)
 			current = current.parent;
+
 		}
-		//		return total_path
+
+		// return final_path
 		return final_path.ToArray();
 
 	}
