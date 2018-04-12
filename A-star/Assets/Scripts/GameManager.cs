@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
 
 	NavSurface target;
 	Vector2 targetNode;
+
+	void Start () {
+	}
 
 	void Update () {
 
@@ -19,8 +21,7 @@ public class GameManager : MonoBehaviour
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-			if (Physics.Raycast(ray, out hit))
-			{
+			if (Physics.Raycast(ray, out hit)) {
 				target = hit.transform.GetComponent<NavSurface>();
 				if (!target) return;
 
@@ -31,9 +32,8 @@ public class GameManager : MonoBehaviour
 
 	}
 
-	void OnDrawGizmos ()
-	{
-		
+	void OnDrawGizmos () {
+
 		if (target) {
 			target.HightlightNode(targetNode);
 		}
