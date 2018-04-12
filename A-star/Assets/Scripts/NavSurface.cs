@@ -9,7 +9,7 @@ public class NavSurface : MonoBehaviour {
 	*/
 	[SerializeField] int resolution = 2;
 	[SerializeField] float obstaclePadding = .3f;
-	[SerializeField] LayerMask obstacleLayer;
+	[SerializeField] LayerMask obstacleLayer = 8;
 
 	[Tooltip("Continuasly update nodes at runtime")]
 	[SerializeField]
@@ -33,13 +33,22 @@ public class NavSurface : MonoBehaviour {
 	/**
 	 * # Proporties
 	*/
-	public PathNode[] PathNodes { get { return _path_nodes; } }
+	public PathNode[] PathNodes {
+		get {
+			if (_path_nodes != null)
+				return _path_nodes;
+			
+			return GeneratePathNodes();
+		}
+	}
+
+	public Vector2 Size { get { return new Vector2(_width, _height); } }
 
 	/**
 	 * # Componets
 	*/
 
-	[SerializeField] Collider col;
+	Collider col;
 
 	/**
 	 * # Private Fields
@@ -51,7 +60,7 @@ public class NavSurface : MonoBehaviour {
 	*/
 	[UsedImplicitly]
 	void Start () {
-
+		col = GetComponent<Collider>();
 		if (_nodes == null || _nodes.Length == 0) BakeNodes();
 		_last_update = updateInterval;
 	}
@@ -85,7 +94,7 @@ public class NavSurface : MonoBehaviour {
 
 	public void BakeNodes () {
 
-		Vector3 bounds = GetLoaclBoundingBox(col);
+		Vector3 bounds = GetLoaclBoundingBox();
 
 		_width = Mathf.FloorToInt(bounds.x * resolution);
 		_height = Mathf.FloorToInt(bounds.z * resolution);
@@ -96,6 +105,7 @@ public class NavSurface : MonoBehaviour {
 		_nodes = new bool[_width * _height];
 		if (!dynamicNodes)
 			_path_nodes = new PathNode[_width * _height];
+		else _path_nodes = null;
 
 		for (int j = 0; j < _height; j++) {
 			for (int i = 0; i < _width; i++) {
@@ -119,20 +129,49 @@ public class NavSurface : MonoBehaviour {
 		_height = 0;
 		_width = 0;
 		_nodes = null;
+		_path_nodes = null;
+	}
+
+	PathNode[] GeneratePathNodes () {
+
+		var nodes = new PathNode[_nodes.Length];
+
+		for (int j = 0; j < _height; j++) {
+			for (int i = 0; i < _width; i++) {
+
+				nodes[i + j * _width] = new PathNode(new Vector2(i, j), _nodes[i + j * _width], NodeWorldPos(i,j));
+
+			}
+		}
+
+		return nodes;
 	}
 
 	Vector3 NodeWorldPos (int x, int y) {
 
-		Vector3 bounds = GetLoaclBoundingBox(col) / 2;
+		Vector3 bounds = GetLoaclBoundingBox() / 2;
 
 		return transform.position + // base position
 					 transform.right * (x * _translation_x + _translation_x * .5f - bounds.x) + // Local x to world
 					 transform.forward * (y * _translation_y + _translation_y * .5f - bounds.z); // Local y to world
 
 	}
+	Vector3 NodeWorldPos (Vector2 node) {
 
-	Vector3 GetLoaclBoundingBox (Collider collider) {
-		if (col is BoxCollider) { 
+		Vector3 bounds = GetLoaclBoundingBox() / 2;
+
+		return transform.position + // base position
+					 transform.right * (node.x * _translation_x + _translation_x * .5f - bounds.x) + // Local x to world
+					 transform.forward * (node.y * _translation_y + _translation_y * .5f - bounds.z); // Local y to world
+
+	}
+
+	Vector3 GetLoaclBoundingBox () {
+
+		if (!col)
+			col = GetComponent<Collider>();
+
+		if (col is BoxCollider) {
 			Vector3 size =  ((BoxCollider) col).size;
 			return new Vector3(size.x * transform.localScale.x, size.y * transform.localScale.y, size.z * transform.localScale.z);
 		}
@@ -147,7 +186,7 @@ public class NavSurface : MonoBehaviour {
 			var height = ((CapsuleCollider)col).height;
 			var direction = ((CapsuleCollider)col).direction;
 
-			var directionArray = new Vector3[] { Vector3.right, Vector3.up, Vector3.forward };
+			var directionArray = new [] { Vector3.right, Vector3.up, Vector3.forward };
 			var result = new Vector3();
 			for (int i = 0; i < 3; i++) {
 				if (i == direction)
@@ -155,12 +194,11 @@ public class NavSurface : MonoBehaviour {
 				else
 					result += directionArray[i] * radius * 2;
 			}
-			
+
 			return new Vector3(result.x * transform.localScale.x, result.y * transform.localScale.y, result.z * transform.localScale.z);
 		}
 
-		if (col is MeshCollider)
-		{
+		if (col is MeshCollider) {
 			Vector3 size = ((MeshCollider) col).sharedMesh.bounds.size;
 			return new Vector3(size.x * transform.localScale.x, size.y * transform.localScale.y, size.z * transform.localScale.z);
 		}
@@ -169,8 +207,10 @@ public class NavSurface : MonoBehaviour {
 	}
 
 	public void HightlightNode (Vector2 pos) {
+
 		Gizmos.color = Color.magenta;
 		Gizmos.DrawWireSphere(NodeWorldPos((int) pos.x, (int) pos.y), obstaclePadding * 1.01f);
+
 	}
 
 	public Vector2 ClosestNodeToPoint (Vector3 pos) {
@@ -180,11 +220,12 @@ public class NavSurface : MonoBehaviour {
 		// translate to surface coordinate system and account for x and y translation
 		pos = (Vector3.Dot(pos, transform.right) - _translation_x / 2) * Vector3.right + (Vector3.Dot(pos, transform.forward) - _translation_y / 2) * Vector3.forward;
 		// Account for object position being centered in its bounds
-		pos += GetLoaclBoundingBox(col) / 2;
+		pos += GetLoaclBoundingBox() / 2;
 		// translate to node coordinates
 		pos *= resolution;
 		// round and return
 		return new Vector2(Mathf.Clamp(Mathf.RoundToInt(pos.x), 0, _width - 1), Mathf.Clamp(Mathf.RoundToInt(pos.z), 0, _height - 1));
+
 	}
 
 }
