@@ -240,8 +240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d6e7e52e4fb8e449a0cf10f2e32e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 60
-  arriveThreshold: 0.1
+  moveForce: 300
+  arriveThreshold: 1
 --- !u!54 &354824587
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -255,7 +255,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!23 &354824588
 MeshRenderer:
@@ -297,7 +297,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 354824584}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 6c0304b2998983b4183250e581c28471, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -668,7 +668,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 15.51
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -691,7 +691,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1869699653}
   m_LocalRotation: {x: -0.70710677, y: -0.000000029802322, z: 0.000000055879354, w: -0.7071068}
-  m_LocalPosition: {x: -0.000000077148336, y: 10.960448, z: 0.0000013991172}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
