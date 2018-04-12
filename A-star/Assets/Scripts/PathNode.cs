@@ -14,7 +14,7 @@ public class PathNode
 		_walkable = walkable;
 		_world_pos = world_pos;
 
-		parent = this;
+		parent = null;
 		gCost = _gCost;
 		hCost = _hCost;
 		fCost = _fCost;

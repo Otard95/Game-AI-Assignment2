@@ -63,6 +63,7 @@ public class NavSurface : MonoBehaviour {
 		col = GetComponent<Collider>();
 		if (_nodes == null || _nodes.Length == 0) BakeNodes();
 		_last_update = updateInterval;
+		_path_nodes = GeneratePathNodes();
 	}
 
 	[UsedImplicitly]
