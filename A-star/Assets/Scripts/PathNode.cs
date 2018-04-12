@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public struct PathNode
+public class PathNode
 {
 	public PathNode(Vector2 grid_pos,
 									bool walkable,
@@ -14,7 +14,7 @@ public struct PathNode
 		_walkable = walkable;
 		_world_pos = world_pos;
 
-		parent = grid_pos;
+		parent = this;
 		gCost = _gCost;
 		hCost = _hCost;
 		fCost = _fCost;
@@ -36,7 +36,7 @@ public struct PathNode
 		get { return _world_pos; }
 	}
 
-	public Vector2 parent;
+	public PathNode parent;
 	public float gCost;
 	public float hCost;
 	public float fCost;
