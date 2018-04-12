@@ -10,7 +10,8 @@ public class ActorMotor : MonoBehaviour {
 	 * # Unity Proporties
 	*/
 	[Header("General")]
-	[SerializeField] float moveForce = 60;
+	[SerializeField]
+	float moveForce = 60;
 
 	[Header("Path Following")]
 	[SerializeField]
@@ -37,8 +38,11 @@ public class ActorMotor : MonoBehaviour {
 	void FixedUpdate () {
 
 		// Path following
-		if (_path != null) {
-			if (Vector3.Distance(transform.position, _path.First()) < arriveThreshold)
+		if (_path != null)
+		{
+			Vector3 translation = _path.First() - transform.position;
+			translation.y = 0;
+			if (translation.magnitude < arriveThreshold)
 				_path.RemoveAt(0);
 
 			if (_path.Count == 0) {
@@ -55,17 +59,29 @@ public class ActorMotor : MonoBehaviour {
 			move_dir += force;
 		}
 
+		move_dir.y = 0;
+
 		_rb.AddForce(move_dir.normalized * moveForce, ForceMode.Force);
+
+		_forces.Clear();
 
 	}
 
-	public void Seek (Vector3 point) {
-		Vector3 desired_dir = point - transform.position;
-		_forces.Add((_rb.velocity - desired_dir).normalized);
+	public void Seek (Vector3 point)
+	{
+
+		Vector3 pos = transform.position;
+		pos.y = 0;
+		point.y = 0;
+
+		Vector3 desired_dir = point - pos;
+		Vector3 steering = desired_dir - _rb.velocity;
+		_forces.Add(steering.normalized);	
 	}
 
 	public void FollowPath (Vector3[] path) {
 		_path = new List<Vector3>(path);
+		_path.Reverse();
 	}
 
 }
