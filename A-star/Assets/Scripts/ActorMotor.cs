@@ -81,7 +81,6 @@ public class ActorMotor : MonoBehaviour {
 
 	public void FollowPath (Vector3[] path) {
 		_path = new List<Vector3>(path);
-		_path.Reverse();
 	}
 
 }

@@ -153,6 +153,8 @@ public class PathFinder : MonoBehaviour {
 
 		}
 
+		// Path is now from end to start so
+		final_path.Reverse();
 		// return final_path
 		return final_path.ToArray();
 
