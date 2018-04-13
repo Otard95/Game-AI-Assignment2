@@ -33,13 +33,8 @@ public class NavSurface : MonoBehaviour {
 	/**
 	 * # Proporties
 	*/
-	public PathNode[] PathNodes {
-		get {
-			if (_path_nodes != null)
-				return _path_nodes;
-			
-			return GeneratePathNodes();
-		}
+	public bool[] Nodes {
+		get { return _nodes; }
 	}
 
 	public Vector2 Size { get { return new Vector2(_width, _height); } }
@@ -157,7 +152,7 @@ public class NavSurface : MonoBehaviour {
 					 transform.forward * (y * _translation_y + _translation_y * .5f - bounds.z); // Local y to world
 
 	}
-	Vector3 NodeWorldPos (Vector2 node) {
+	public Vector3 NodeWorldPos (Vector2 node) {
 
 		Vector3 bounds = GetLoaclBoundingBox() / 2;
 
