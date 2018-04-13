@@ -75,8 +75,7 @@ public class ActorMotor : MonoBehaviour {
 		point.y = 0;
 
 		Vector3 desired_dir = point - pos;
-		Vector3 steering = desired_dir - _rb.velocity;
-		_forces.Add(steering.normalized);	
+		_forces.Add(desired_dir.normalized);	
 	}
 
 	public void FollowPath (Vector3[] path) {
