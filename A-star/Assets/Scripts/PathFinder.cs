@@ -1,17 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Analytics;
 
 public class PathFinder : MonoBehaviour {
 
-	[SerializeField] bool visualizeAlgorithm = false;
+	public bool visualizeAlgorithm = false;
+	public int stepsPerSecond = 5;
+	public float nodeSize = .25f;
+
+	public bool showFinalPath = false;
+	public bool untilNextSearch = false;
+	public float timeVisible = 3f;
 
 	public delegate void PathCallback (Vector3[] path);
 
 	float[] g, h, f;
 
 	Vector2[] cameFrom;
+
+	List<Vector2> closedList;
+	List<Vector2> openList;
+
+	NavSurface _surface;
+	List<Vector3> _final_path;
+	float _time_shown = 0;
 
 	#region Singelton
 
@@ -29,6 +43,14 @@ public class PathFinder : MonoBehaviour {
 
 	public void GetPath (Vector3 from, Vector3 to, NavSurface targetSurface, PathCallback callback) {
 
+		StopAllCoroutines();
+
+		if (untilNextSearch) {
+			_final_path = null;
+		}
+
+		_surface = targetSurface;
+
 		bool[] nodes = targetSurface.Nodes;
 		Vector2 size = targetSurface.Size;
 
@@ -42,6 +64,9 @@ public class PathFinder : MonoBehaviour {
 			f = new float[(int) (size.x * size.y)];
 			cameFrom = new Vector2[(int) (size.x * size.y)];
 
+			openList = new List<Vector2>();
+			closedList = new List<Vector2>();
+
 		} else if (g.Length < size.x * size.y) {
 
 			g = new float[(int) (size.x * size.y)];
@@ -51,8 +76,10 @@ public class PathFinder : MonoBehaviour {
 
 		}
 
-		for (int i = 0; i < g.Length; i++)
-		{
+		openList.Clear();
+		closedList.Clear();
+
+		for (int i = 0; i < g.Length; i++) {
 			g[i] = float.MaxValue;
 			h[i] = float.MaxValue;
 			f[i] = float.MaxValue;
@@ -67,20 +94,15 @@ public class PathFinder : MonoBehaviour {
 
 		bool pathFound = false;
 
-		// The set of nodes already evaluated
-		List<Vector2> closedList = new List<Vector2>();
-
-		// The set of currently discovered nodes that are not evaluated yet.
-		List<Vector2> openList = new List<Vector2>();
 		// Initially, only the start node is known.
 		openList.Add(start);
 
 		// The cost of going from start to start is zero.
 		g[Index(start, size.x)] = 0;
 
-		// For the first node, that value is completely heuristic.
+		// For the first node, the final and heuristic cost is the same.
 		h[Index(start, size.x)] = Vector2.Distance(start, end);
-		f[Index(start, size.x)] = g[Index(start, size.x)] + h[Index(start, size.x)];
+		f[Index(start, size.x)] = h[Index(start, size.x)];
 
 		// while openSet is not empty
 		while (openList.Count > 0) {
@@ -90,7 +112,11 @@ public class PathFinder : MonoBehaviour {
 			// if we found the path
 			if (current == end) {
 				// return reconstructed path
-				callback(ReconstructPath(current, (int)size.x, surface));
+				callback(ReconstructPath(current, (int) size.x, surface));
+				if (showFinalPath) {
+					openList.Clear();
+					closedList.Clear();
+				}
 				pathFound = true;
 				break;
 			}
@@ -138,6 +164,12 @@ public class PathFinder : MonoBehaviour {
 
 				}
 			}
+
+			if (visualizeAlgorithm) { // If we are visualizing the algorithm
+																// wait for (1/steps per second) seconds
+				yield return new WaitForSeconds(1 / stepsPerSecond);
+			}
+
 		}
 
 		if (!pathFound)
@@ -174,19 +206,59 @@ public class PathFinder : MonoBehaviour {
 	Vector3[] ReconstructPath (Vector2 current, int width, NavSurface surface) {
 
 		// total_path:= [current]
-		List<Vector3> final_path = new List<Vector3>();
+		List<Vector3> finalPath = new List<Vector3>();
 
 		while (cameFrom[Index(current, width)] != Vector2.down) {
 
-			final_path.Add(surface.NodeWorldPos(current));
+			finalPath.Add(surface.NodeWorldPos(current));
 			current = cameFrom[Index(current, width)];
 
 		}
 
 		// Path is now from end to start so
-		final_path.Reverse();
+		finalPath.Reverse();
+
+		if (showFinalPath) {
+			_final_path = finalPath;
+		}
+
 		// return final_path
-		return final_path.ToArray();
+		return finalPath.ToArray();
+
+	}
+
+	[UsedImplicitly]
+	void OnDrawGizmos () {
+
+		if (visualizeAlgorithm && closedList != null && closedList.Count > 0) {
+			foreach (var node in closedList) {
+				_surface.HightlightNode(node, Color.red, .2f);
+			}
+		}
+
+		if (visualizeAlgorithm && openList != null && openList.Count > 0) {
+			foreach (var node in openList) {
+				_surface.HightlightNode(node, Color.blue, .2f);
+			}
+		}
+
+		Gizmos.color = Color.green;
+		if (showFinalPath && _final_path != null && _final_path.Count > 0) {
+			for (int i = 0; i < _final_path.Count - 1; i++) {
+				Gizmos.DrawLine(_final_path[i], _final_path[i + 1]);
+			}
+		}
+
+		if (showFinalPath && !untilNextSearch && _final_path != null) {
+
+			_time_shown += Time.deltaTime;
+
+			if (_time_shown >= timeVisible) {
+				_final_path = null;
+				_time_shown = 0;
+			}
+
+		}
 
 	}
 
