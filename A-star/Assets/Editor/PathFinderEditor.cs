@@ -9,11 +9,12 @@ public class PathFinderEditor : Editor {
 
 	[UsedImplicitly]
 	void Awake () {
-		_header_style = new GUIStyle();
-
-		_header_style.fontSize = 11;
-		_header_style.fontStyle = FontStyle.Bold;
-		_header_style.padding = new RectOffset(2, 2, 4, 4);
+		_header_style = new GUIStyle
+		{
+			fontSize = 11,
+			fontStyle = FontStyle.Bold,
+			padding = new RectOffset(2, 2, 4, 4)
+		};
 	}
 
 	public override void OnInspectorGUI () {
@@ -36,8 +37,8 @@ public class PathFinderEditor : Editor {
 
 		using (new EditorGUI.DisabledScope(!pf.visualizeAlgorithm)) {
 
-			pf.stepsPerSecond = EditorGUILayout.IntField("Steps Per Second",
-																										pf.stepsPerSecond);
+			pf.stepsPerSecond = EditorGUILayout.IntSlider("Steps Per Second",
+																										pf.stepsPerSecond, 1, 60);
 
 			pf.nodeSize = EditorGUILayout.FloatField("Node Size", pf.nodeSize);
 		}
