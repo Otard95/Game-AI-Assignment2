@@ -16,14 +16,14 @@ public class NavSurface : MonoBehaviour {
 	bool dynamicNodes = false;
 
 	[Tooltip("In seconds")]
-	[SerializeField]
-	float updateInterval = 0.01f;
+	[SerializeField] float updateInterval = 0.01f;
+
+	[SerializeField] bool showNodes = false;
 
 	/**
 	 * # Persistent fields
 	*/
 	[SerializeField] [HideInInspector] bool[] _nodes;
-	[SerializeField] [HideInInspector] PathNode[] _path_nodes;
 
 	[SerializeField] [HideInInspector] int _width;
 	[SerializeField] [HideInInspector] int _height;
@@ -58,7 +58,6 @@ public class NavSurface : MonoBehaviour {
 		col = GetComponent<Collider>();
 		if (_nodes == null || _nodes.Length == 0) BakeNodes();
 		_last_update = updateInterval;
-		_path_nodes = GeneratePathNodes();
 	}
 
 	[UsedImplicitly]
@@ -71,8 +70,8 @@ public class NavSurface : MonoBehaviour {
 	}
 
 	[UsedImplicitly]
-	void OnDrawGizmosSelected () {
-		if (_nodes == null) return;
+	void OnDrawGizmos () {
+		if (!showNodes || _nodes == null) return;
 
 		for (int j = 0; j < _height; j++) {
 			for (int i = 0; i < _width; i++) {
@@ -99,9 +98,6 @@ public class NavSurface : MonoBehaviour {
 		_translation_y = bounds.z / _height;
 
 		_nodes = new bool[_width * _height];
-		if (!dynamicNodes)
-			_path_nodes = new PathNode[_width * _height];
-		else _path_nodes = null;
 
 		for (int j = 0; j < _height; j++) {
 			for (int i = 0; i < _width; i++) {
@@ -114,9 +110,6 @@ public class NavSurface : MonoBehaviour {
 					_nodes[i + j * _width] = true;
 				}
 
-				if (!dynamicNodes)
-					_path_nodes[i + j * _width] = new PathNode(new Vector2(i, j), _nodes[i + j * _width], pos);
-
 			}
 		}
 	}
@@ -125,22 +118,6 @@ public class NavSurface : MonoBehaviour {
 		_height = 0;
 		_width = 0;
 		_nodes = null;
-		_path_nodes = null;
-	}
-
-	PathNode[] GeneratePathNodes () {
-
-		var nodes = new PathNode[_nodes.Length];
-
-		for (int j = 0; j < _height; j++) {
-			for (int i = 0; i < _width; i++) {
-
-				nodes[i + j * _width] = new PathNode(new Vector2(i, j), _nodes[i + j * _width], NodeWorldPos(i,j));
-
-			}
-		}
-
-		return nodes;
 	}
 
 	Vector3 NodeWorldPos (int x, int y) {
