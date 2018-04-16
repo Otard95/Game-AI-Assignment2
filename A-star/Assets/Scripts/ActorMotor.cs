@@ -38,8 +38,7 @@ public class ActorMotor : MonoBehaviour {
 	void FixedUpdate () {
 
 		// Path following
-		if (_path != null)
-		{
+		if (_path != null) {
 			Vector3 translation = _path.First() - transform.position;
 			translation.y = 0;
 			if (translation.magnitude < arriveThreshold)
@@ -67,19 +66,24 @@ public class ActorMotor : MonoBehaviour {
 
 	}
 
-	public void Seek (Vector3 point)
-	{
+	public void Seek (Vector3 point) {
 
 		Vector3 pos = transform.position;
 		pos.y = 0;
 		point.y = 0;
 
 		Vector3 desired_dir = point - pos;
-		_forces.Add(desired_dir.normalized);	
+		_forces.Add(desired_dir.normalized);
 	}
 
 	public void FollowPath (Vector3[] path) {
 		_path = new List<Vector3>(path);
+	}
+
+	public void Stop ()
+	{
+		_path = null;
+		_forces.Clear();
 	}
 
 }

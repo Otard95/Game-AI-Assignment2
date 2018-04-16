@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
 				target = hit.transform.GetComponent<NavSurface>();
 				if (!target) return;
 
+				_motor.Stop();
 				PathFinder.Instance.GetPath(transform.position, hit.point, target, HandleReturnedPath);
 			}
 
