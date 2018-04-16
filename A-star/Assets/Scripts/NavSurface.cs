@@ -209,6 +209,20 @@ public class NavSurface : MonoBehaviour {
 
 	}
 
+	public void HightlightNode (Vector2 pos, Color color) {
+
+		Gizmos.color = color;
+		Gizmos.DrawWireSphere(NodeWorldPos((int) pos.x, (int) pos.y), obstaclePadding * 1.01f);
+
+	}
+
+	public void HightlightNode (Vector2 pos, Color color, float size) {
+
+		Gizmos.color = color;
+		Gizmos.DrawWireSphere(NodeWorldPos((int) pos.x, (int) pos.y), size);
+
+	}
+
 	public Vector2 ClosestNodeToPoint (Vector3 pos) {
 
 		// transform 'pos' to be relative to the surface.
