@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualizeAlgorithm: 1
-  stepsPerSecond: 5
+  stepsPerSecond: 60
   nodeSize: 0.25
   showFinalPath: 0
   untilNextSearch: 0
