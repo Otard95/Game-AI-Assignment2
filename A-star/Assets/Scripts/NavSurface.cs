@@ -18,7 +18,7 @@ public class NavSurface : MonoBehaviour {
 	[Tooltip("In seconds")]
 	[SerializeField] float updateInterval = 0.01f;
 
-	[SerializeField] bool showNodes = false;
+	public bool showNodes { get; set; }
 
 	/**
 	 * # Persistent fields
