@@ -9,7 +9,7 @@ public class NavSurface : MonoBehaviour {
 	*/
 	[SerializeField] int resolution = 2;
 	[SerializeField] float obstaclePadding = .3f;
-	[SerializeField] LayerMask obstacleLayer = 8;
+	[SerializeField] readonly LayerMask obstacleLayer = 256;
 
 	[Tooltip("Continuasly update nodes at runtime")]
 	[SerializeField]

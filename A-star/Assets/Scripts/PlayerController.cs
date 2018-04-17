@@ -16,14 +16,13 @@ public class PlayerController : MonoBehaviour {
 
 	[UsedImplicitly]
 	void Update () {
-		if (Input.GetMouseButtonDown(0)) {
-
-			NavSurface target;
+		if (Input.GetButtonDown("Fire2")) {
+			
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 			if (Physics.Raycast(ray, out hit)) {
-				target = hit.transform.GetComponent<NavSurface>();
+				NavSurface target = hit.transform.GetComponent<NavSurface>();
 				if (!target) return;
 
 				_motor.Stop();
