@@ -12,7 +12,6 @@ public class ObstaclePainter : MonoBehaviour {
 	
 	GameObject _currently_painting;
 	Vector3 _start_point;
-	NavSurface _surface;
 
 	[UsedImplicitly]
 	void Update () {
@@ -25,7 +24,6 @@ public class ObstaclePainter : MonoBehaviour {
 			if (Physics.Raycast(ray, out hit, int.MaxValue, placeableLayer)) {
 				
 				StartObstaclePlacement(hit.point);
-				_surface = hit.transform.GetComponent<NavSurface>();
 
 			}
 
@@ -79,9 +77,6 @@ public class ObstaclePainter : MonoBehaviour {
 		ContinueObstaclePlacing(endPoint);
 
 		_currently_painting = null;
-		if (_surface != null) {
-			_surface.BakeNodes();
-		}
 
 	}
 
