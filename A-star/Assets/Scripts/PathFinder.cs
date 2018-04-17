@@ -11,7 +11,7 @@ public class PathFinder : MonoBehaviour {
 	public float nodeSize = .25f;
 
 	public bool showFinalPath { get; set; }
-	public bool untilNextSearch = false;
+	public bool untilNextSearch { get; set; }
 	public float timeVisible = 3f;
 
 	public delegate void PathCallback (Vector3[] path);
