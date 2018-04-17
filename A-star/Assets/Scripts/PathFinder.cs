@@ -6,11 +6,11 @@ using UnityEngine.Analytics;
 
 public class PathFinder : MonoBehaviour {
 
-	public bool visualizeAlgorithm = false;
+	public bool visualizeAlgorithm { get; set; }
 	public int stepsPerSecond = 5;
 	public float nodeSize = .25f;
 
-	public bool showFinalPath = false;
+	public bool showFinalPath { get; set; }
 	public bool untilNextSearch = false;
 	public float timeVisible = 3f;
 
