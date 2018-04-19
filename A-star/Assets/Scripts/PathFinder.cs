@@ -178,10 +178,7 @@ public class PathFinder : MonoBehaviour {
 		yield return null;
 
 	}
-
-	int Index (float x, float y, float width) {
-		return (int) (x + y * width);
-	}
+	
 	int Index (Vector2 pos, float width) {
 		return (int) (pos.x + pos.y * width);
 	}
@@ -232,13 +229,13 @@ public class PathFinder : MonoBehaviour {
 
 		if (visualizeAlgorithm && closedList != null && closedList.Count > 0) {
 			foreach (var node in closedList) {
-				_surface.HightlightNode(node, Color.red, .2f);
+				_surface.HighlightNode(node, Color.red, .2f);
 			}
 		}
 
 		if (visualizeAlgorithm && openList != null && openList.Count > 0) {
 			foreach (var node in openList) {
-				_surface.HightlightNode(node, Color.blue, .2f);
+				_surface.HighlightNode(node, Color.blue, .2f);
 			}
 		}
 

@@ -66,7 +66,7 @@ public class ActorMotor : MonoBehaviour {
 
 	}
 
-	public void Seek (Vector3 point) {
+	void Seek (Vector3 point) {
 
 		Vector3 pos = transform.position;
 		pos.y = 0;

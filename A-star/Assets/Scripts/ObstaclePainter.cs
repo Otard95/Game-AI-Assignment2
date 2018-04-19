@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ObstaclePainter : MonoBehaviour {
 
 	[SerializeField] GameObject prefab;
-	[SerializeField] Transform parrent;
+	[SerializeField] Transform parent;
 	[SerializeField] LayerMask placeableLayer = 512;
 	[SerializeField] float minimumPaintDistance = .2f;
 	[SerializeField] Vector3 offset;
@@ -42,8 +42,8 @@ public class ObstaclePainter : MonoBehaviour {
 	void StartObstaclePlacement (Vector3 startPoint) {
 
 		_start_point = startPoint + offset;
-		if (parrent)
-			_currently_painting = Instantiate(prefab, startPoint, Quaternion.identity, parrent);
+		if (parent)
+			_currently_painting = Instantiate(prefab, startPoint, Quaternion.identity, parent);
 		else
 			_currently_painting = Instantiate(prefab, startPoint, Quaternion.identity);
 
