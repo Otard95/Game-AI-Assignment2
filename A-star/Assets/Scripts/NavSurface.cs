@@ -89,7 +89,7 @@ public class NavSurface : MonoBehaviour {
 
 	public void BakeNodes () {
 
-		Vector3 bounds = GetLoaclBoundingBox();
+		Vector3 bounds = GetLocalBoundingBox();
 
 		_width = Mathf.FloorToInt(bounds.x * resolution);
 		_height = Mathf.FloorToInt(bounds.z * resolution);
@@ -122,7 +122,7 @@ public class NavSurface : MonoBehaviour {
 
 	Vector3 NodeWorldPos (int x, int y) {
 
-		Vector3 bounds = GetLoaclBoundingBox() / 2;
+		Vector3 bounds = GetLocalBoundingBox() / 2;
 
 		return transform.position + // base position
 					 transform.right * (x * _translation_x + _translation_x * .5f - bounds.x) + // Local x to world
@@ -131,7 +131,7 @@ public class NavSurface : MonoBehaviour {
 	}
 	public Vector3 NodeWorldPos (Vector2 node) {
 
-		Vector3 bounds = GetLoaclBoundingBox() / 2;
+		Vector3 bounds = GetLocalBoundingBox() / 2;
 
 		return transform.position + // base position
 					 transform.right * (node.x * _translation_x + _translation_x * .5f - bounds.x) + // Local x to world
@@ -139,7 +139,7 @@ public class NavSurface : MonoBehaviour {
 
 	}
 
-	Vector3 GetLoaclBoundingBox () {
+	Vector3 GetLocalBoundingBox () {
 
 		if (!col)
 			col = GetComponent<Collider>();
@@ -179,21 +179,21 @@ public class NavSurface : MonoBehaviour {
 		return Vector3.zero;
 	}
 
-	public void HightlightNode (Vector2 pos) {
+	public void HighlightNode (Vector2 pos) {
 
 		Gizmos.color = Color.magenta;
 		Gizmos.DrawWireSphere(NodeWorldPos((int) pos.x, (int) pos.y), obstaclePadding * 1.01f);
 
 	}
 
-	public void HightlightNode (Vector2 pos, Color color) {
+	public void HighlightNode (Vector2 pos, Color color) {
 
 		Gizmos.color = color;
 		Gizmos.DrawWireSphere(NodeWorldPos((int) pos.x, (int) pos.y), obstaclePadding * 1.01f);
 
 	}
 
-	public void HightlightNode (Vector2 pos, Color color, float size) {
+	public void HighlightNode (Vector2 pos, Color color, float size) {
 
 		Gizmos.color = color;
 		Gizmos.DrawWireSphere(NodeWorldPos((int) pos.x, (int) pos.y), size);
@@ -207,7 +207,7 @@ public class NavSurface : MonoBehaviour {
 		// translate to surface coordinate system and account for x and y translation
 		pos = (Vector3.Dot(pos, transform.right) - _translation_x / 2) * Vector3.right + (Vector3.Dot(pos, transform.forward) - _translation_y / 2) * Vector3.forward;
 		// Account for object position being centered in its bounds
-		pos += GetLoaclBoundingBox() / 2;
+		pos += GetLocalBoundingBox() / 2;
 		// translate to node coordinates
 		pos *= resolution;
 		// round and return
