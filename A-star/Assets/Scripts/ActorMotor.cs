@@ -74,6 +74,7 @@ public class ActorMotor : MonoBehaviour {
 
 		Vector3 desired_dir = point - pos;
 		_forces.Add(desired_dir.normalized);
+
 	}
 
 	public void FollowPath (Vector3[] path) {

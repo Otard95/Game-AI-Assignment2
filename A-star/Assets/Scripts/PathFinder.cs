@@ -167,7 +167,7 @@ public class PathFinder : MonoBehaviour {
 
 			if (visualizeAlgorithm) { // If we are visualizing the algorithm
 																// wait for (1/steps per second) seconds
-				yield return new WaitForSeconds((1f / stepsPerSecond));
+				yield return new WaitForSeconds(1f / stepsPerSecond);
 			}
 
 		}
