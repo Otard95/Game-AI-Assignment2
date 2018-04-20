@@ -4,8 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class SetActive : UnityEvent<bool> {
-}
+public class SetActive : UnityEvent<bool> {}
 
 [System.Serializable]
 public class ToolUISet {
@@ -17,6 +16,7 @@ public class ToolUISet {
 [System.Serializable]
 public class ToggleBtn {
 	public bool active;
+	public bool inverse;
 	public Button button;
 	public Image btnImage;
 	public Sprite activeImage;
@@ -67,7 +67,7 @@ public class ToolManager : MonoBehaviour {
 		}
 
 		btn.button.GetComponent<Image>().color = btn.active ? activeColor : inactiveColor;
-		if (btn.toggleEvent != null) btn.toggleEvent.Invoke(btn.active);
+		if (btn.toggleEvent != null) btn.toggleEvent.Invoke(btn.active ^ btn.inverse);
 	}
 
 	void DeactivateSingleSelectTools () {
