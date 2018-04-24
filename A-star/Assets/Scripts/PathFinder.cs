@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 public class PathFinder : MonoBehaviour {
 
@@ -25,7 +24,8 @@ public class PathFinder : MonoBehaviour {
 
 	NavSurface _surface;
 	List<Vector3> _final_path;
-	float _time_shown = 0;
+	float _time_shown;
+	Vector2 _target_node;
 
 	#region Singelton
 
@@ -35,6 +35,7 @@ public class PathFinder : MonoBehaviour {
 		get { return _instance; }
 	}
 
+	[UsedImplicitly]
 	void Awake () {
 		_instance = this;
 	}
@@ -56,6 +57,13 @@ public class PathFinder : MonoBehaviour {
 
 		Vector2 start = targetSurface.ClosestNodeToPoint(from);
 		Vector2 end = targetSurface.ClosestNodeToPoint(to);
+		_target_node = end;
+
+		if (!targetSurface.NodesInConectedZones(start, end)) {
+			callback(null);
+			Debug.Log("Cannot path between unconected zones.");
+			return;
+		}
 
 		if (g == null) {
 
@@ -226,6 +234,8 @@ public class PathFinder : MonoBehaviour {
 
 	[UsedImplicitly]
 	void OnDrawGizmos () {
+
+		if (_surface) _surface.HighlightNode(_target_node, Color.yellow, .5f);
 
 		if (visualizeAlgorithm && closedList != null && closedList.Count > 0) {
 			foreach (var node in closedList) {

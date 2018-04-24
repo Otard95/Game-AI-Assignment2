@@ -1,4 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using JetBrains.Annotations;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -15,8 +17,7 @@ public class NavSurface : MonoBehaviour {
 	[SerializeField]
 	bool dynamicNodes = false;
 
-	[Tooltip("In seconds")]
-	[SerializeField] float updateInterval = 0.01f;
+	[Tooltip("In seconds")] [SerializeField] float updateInterval = 0.01f;
 
 	public bool showNodes { get; set; }
 
@@ -24,6 +25,8 @@ public class NavSurface : MonoBehaviour {
 	 * # Persistent fields
 	*/
 	[SerializeField] [HideInInspector] bool[] _nodes;
+	[SerializeField] [HideInInspector] int[] _zone_map;
+	[SerializeField] [HideInInspector] List<int> _zones;
 
 	[SerializeField] [HideInInspector] int _width;
 	[SerializeField] [HideInInspector] int _height;
@@ -49,6 +52,7 @@ public class NavSurface : MonoBehaviour {
 	 * # Private Fields
 	*/
 	float _last_update;
+	Color[] _node_colors;
 
 	/**
 	 * # Unity Methods
@@ -58,6 +62,8 @@ public class NavSurface : MonoBehaviour {
 		col = GetComponent<Collider>();
 		if (_nodes == null || _nodes.Length == 0) BakeNodes();
 		_last_update = updateInterval;
+
+		_node_colors = new[] { Color.green, Color.cyan, Color.blue, Color.magenta };
 	}
 
 	[UsedImplicitly]
@@ -77,7 +83,9 @@ public class NavSurface : MonoBehaviour {
 			for (int i = 0; i < _width; i++) {
 				Vector3 pos = NodeWorldPos(i, j);
 
-				Gizmos.color = _nodes[i + j * _width] ? Color.green : Color.red;
+				if (!_nodes[i + j * _width]) Gizmos.color = Color.red;
+				else Gizmos.color = _node_colors[(_zone_map[i + j * _width] - 1) % _node_colors.Length];
+
 				Gizmos.DrawWireSphere(pos, obstaclePadding);
 			}
 		}
@@ -94,30 +102,80 @@ public class NavSurface : MonoBehaviour {
 		_width = Mathf.FloorToInt(bounds.x * resolution);
 		_height = Mathf.FloorToInt(bounds.z * resolution);
 
-		_translation_x = bounds.x / _width;
-		_translation_y = bounds.z / _height;
+		if (_nodes == null || _height * _width > _nodes.Length) {
 
-		_nodes = new bool[_width * _height];
+			_translation_x = bounds.x / _width;
+			_translation_y = bounds.z / _height;
 
-		for (int j = 0; j < _height; j++) {
-			for (int i = 0; i < _width; i++) {
+			_nodes = new bool[_width * _height];
+			_zone_map = new int[_width * _height];
+			_zones = new List<int>();
 
-				Vector3 pos = NodeWorldPos(i, j);
+		}
+
+		_zones.Clear();
+		_zones.Add(0);
+
+		for (int y = 0; y < _height; y++) {
+			for (int x = 0; x < _width; x++) {
+
+				Vector3 pos = NodeWorldPos(x, y);
+				int i = x + y * _width;
 
 				if (Physics.OverlapSphere(pos, obstaclePadding, obstacleLayer).Length > 0) {
-					_nodes[i + j * _width] = false;
+					// node is not walkable
+					_nodes[i] = false;
+					_zone_map[i] = 0;
 				} else {
-					_nodes[i + j * _width] = true;
+					// node is walkable
+					_nodes[i] = true;
+
+					// figure out what zone id this node will have
+					if (y - 1 >= 0 && _nodes[i - _width]) { // The above node is walkable use its zone id
+						_zone_map[i] = _zone_map[i - _width];
+
+						if (x - 1 >= 0 && _nodes[i - 1] &&
+								_zone_map[i - 1] != _zone_map[i] &&
+								ResolveZone(_zone_map[i]) != _zone_map[i - 1]) {
+							// Zone to above node is connected to zone to the left
+							_zones[_zone_map[i - 1]] = _zone_map[i];
+						}
+
+					} else if (x - 1 >= 0 && _nodes[i - 1]) { // The node to the laft is walkable use its id
+						_zone_map[i] = _zone_map[i - 1];
+					} else { // There is no conected zone. use next available id
+						_zone_map[i] = _zones.Count;
+						_zones.Add(_zone_map[i]);
+					}
 				}
 
 			}
 		}
 	}
 
+	int ResolveZone (int initial) {
+		if (_zones[initial] == initial) return initial;
+		return ResolveZone(_zones[initial]);
+	}
+
+	public bool NodesInConectedZones (Vector2 node1, Vector2 node2) {
+
+		int m_zone1 = _zone_map[(int) (node1.x + node1.y * _width)];
+		int m_zone2 = _zone_map[(int) (node2.x + node2.y * _width)];
+
+		if (ResolveZone(m_zone1) == ResolveZone(m_zone2))
+			return true;
+		// else
+		return false;
+
+	}
+
 	public void ClearNodes () {
 		_height = 0;
 		_width = 0;
 		_nodes = null;
+		_zone_map = null;
+		_zones = null;
 	}
 
 	Vector3 NodeWorldPos (int x, int y) {
