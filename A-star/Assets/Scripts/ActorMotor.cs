@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -26,7 +25,7 @@ public class ActorMotor : MonoBehaviour {
 	 * # Private Fields
 	*/
 	List<Vector3> _forces;
-	List<Vector3> _path = null;
+	List<Vector3> _path;
 
 	[UsedImplicitly]
 	void Start () {
